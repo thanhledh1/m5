@@ -12,6 +12,14 @@ import App1 from './components/HookCustom';
 import Student from './components/Student';
 import MyForm from './components/Form';
 import BasicForm from './components/Formik';
+import Submit from './components/Form';
+import FileUploadPage from './components/Form';
+import THform from './components/THform';
+import THValidateForm from './components/THValidateForm';
+import THFormLoginwithFormik from './components/THFormLoginwithFormik';
+import BtContact from './components/BtContact';
+import BtBook from './components/BtBook';
+import SendEmailForm from './components/BTmail';
 
 // const mystyle = {
 //   color: 'red',
@@ -87,7 +95,7 @@ import BasicForm from './components/Formik';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<BasicForm/>)
+root.render(<SendEmailForm/>)
 
 
 

@@ -72,7 +72,7 @@
 //     <form onSubmit={submitHandler}>
 //       <h1>Hello {username}</h1>
 //       <p>Enter your name, and submit:</p>
-//       <input type="text" onChange={handleChange} />
+//       <input type="text" onChange123={handleChange} />
 //       <input type="submit" />
 //     </form>
 //   );
@@ -155,38 +155,78 @@
 
 
 
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
 
-function Form() {
-  const [state, setState] = useState({
-    username: "",
-    age: null,
-    errormessage: ""
-  });
-  const handleChange = event => {
-    let nam = event.target.name;
-    let val = event.target.value;
-    let err = "";
-    if (nam === "age") {
-      if (val !== "" && !Number(val)) {
-        err = "Your age must be a number";
-      }
-    }
-    setState({ ...state, [nam]: val, errormessage: err });
+// function Form() {
+//   const [state, setState] = useState({
+//     username: "",
+//     age: null,
+//     errormessage: ""
+//   });
+//   const handleChange = event => {
+//     let nam = event.target.name;
+//     let val = event.target.value;
+//     let err = "";
+//     if (nam === "age") {
+//       if (val !== "" && !Number(val)) {
+//         err = "Your age must be a number";
+//       }
+//     }
+//     setState({ ...state, [nam]: val, errormessage: err });
+//   };
+
+//   return (
+//     <form>
+//       <h1>
+//         Hello {state.username} {state.age}
+//       </h1>
+//       <p>Enter your name:</p>
+//       <input type="text" name="username" onChange={handleChange} />
+//       <p>Enter your age:</p>
+//       <input type="text" name="age" onChange={handleChange} />
+//       {state.errormessage}
+//     </form>
+//   );
+// }
+
+// export default Form;
+
+
+
+
+import React, { useState } from "react";
+
+function FileUploadPage() {
+  const [selectedFile, setSelectedFile] = useState();
+  const [isFilePicked, setIsFilePicked] = useState(false);
+
+  const changeHandler = event => {
+    setSelectedFile(event.target.files[0]);
+    setIsFilePicked(true);
   };
 
+  const handleSubmission = () => {};
   return (
-    <form>
-      <h1>
-        Hello {state.username} {state.age}
-      </h1>
-      <p>Enter your name:</p>
-      <input type="text" name="username" onChange={handleChange} />
-      <p>Enter your age:</p>
-      <input type="text" name="age" onChange={handleChange} />
-      {state.errormessage}
-    </form>
+    <div>
+      <input type="file" name="file" onChange={changeHandler} />
+      {isFilePicked ? (
+        <div>
+          <p>Filename: {selectedFile.name}</p>
+          <p>Filetype: {selectedFile.type}</p>
+          <p>Size in bytes: {selectedFile.size}</p>
+          <p>
+            lastModifiedDate:{" "}
+            {selectedFile.lastModifiedDate.toLocaleDateString()}
+          </p>
+        </div>
+      ) : (
+        <p>Select a file to show details</p>
+      )}
+      <div>
+        <button onClick={handleSubmission}>Submit</button>
+      </div>
+    </div>
   );
 }
 
-export default Form;
+export default FileUploadPage;
